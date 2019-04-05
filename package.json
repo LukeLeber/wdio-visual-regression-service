@@ -31,7 +31,7 @@
   "author": "Jan-André Zinser",
   "license": "MIT",
   "peerDependencies": {
-    "webdriverio": "^4.0.7"
+    "webdriverio": "^5.0.0"
   },
   "dependencies": {
     "babel-runtime": "^6.9.0",
