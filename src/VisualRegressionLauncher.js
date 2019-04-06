@@ -218,6 +218,7 @@ debug('3');
         viewportChangePause,
         resolutions,
         async function takeScreenshot(resolution) {
+          debug('5');
           const meta = _.pickBy({
             url,
             element: elementSelector,
@@ -247,9 +248,11 @@ debug('3');
           return [screenshotContextCleaned, base64Screenshot];
         },
         async function processScreenshot(screenshotContextCleaned, base64Screenshot) {
+          debug('6');
           return await runHook('processScreenshot', screenshotContextCleaned, base64Screenshot);
         }
       );
+      debug('after');
       return results;
 
     }
