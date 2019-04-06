@@ -1,5 +1,5 @@
 {
-  "name": "@wdio/visual-regression",
+  "name": "@wdio/visual-regression-service",
   "version": "1.0.0",
   "description": "Visual regression testing for WebdriverIO",
   "main": "index.js",
