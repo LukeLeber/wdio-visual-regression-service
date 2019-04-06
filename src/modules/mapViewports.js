@@ -15,7 +15,8 @@ export async function mapViewports(browser, delay, viewports = [], iterateeScree
     debug(viewports);
     for (let viewport of viewports) {
       debug('11.75');
-      await browser.setViewportSize(viewport);
+      await browser.setWindowRect(0, 0, viewport.width, viewport.height);
+//      await browser.setViewportSize(viewport);
       debug('11.99');
       await browser.pause(delay);
       debug('11.999999');
