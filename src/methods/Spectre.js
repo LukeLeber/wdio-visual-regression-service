@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import SpectreClient from "nodeclient-spectre";
 
-const log = debug('wdio-visual-regression-service:Spectre');
+const log = debug('wdio-visual-regression-service');
 const runtimeConfigName = 'spectre-run';
 
 export default class Spectre extends BaseCompare {
@@ -30,6 +30,7 @@ export default class Spectre extends BaseCompare {
   }
 
   async processScreenshot(context, base64Screenshot) {
+    log('process screenshot');
     const runDetails = await this.getRuntimeConfig(runtimeConfigName);
     const testrunID = runDetails.id;
     const test = this.test(context);
