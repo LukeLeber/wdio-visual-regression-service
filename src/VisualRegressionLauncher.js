@@ -197,10 +197,10 @@ export default class VisualRegressionLauncher {
 
     const viewportChangePauseDefault = this.viewportChangePause;
     const resolutionDefault = browser.isMobile ? this.orientations : this.viewports;
-
+    debug('1');
     return async function async(...args) {
       const url = await browser.getUrl();
-
+debug('2');
       const elementSelector = type === 'element' ? args[0] : undefined;
       const options = _.isPlainObject(args[args.length - 1]) ? args[args.length - 1] : {};
 
@@ -212,7 +212,7 @@ export default class VisualRegressionLauncher {
 
       const resolutions = _.get(options, resolutionKeyPlural, resolutionDefault);
       const viewportChangePause = _.get(options, 'viewportChangePause', viewportChangePauseDefault);
-
+debug('3');
       const results = await resolutionMap(
         browser,
         viewportChangePause,
@@ -235,7 +235,7 @@ export default class VisualRegressionLauncher {
           };
 
           const screenshotContextCleaned = _.pickBy(screenshotContext, _.identity);
-
+          debug('Before before screenshot');
           await runHook('beforeScreenshot', screenshotContextCleaned);
 
           debug('Before taking screenshot');
