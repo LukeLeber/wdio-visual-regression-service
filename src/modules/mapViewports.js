@@ -1,4 +1,7 @@
+const debug = require('debug')('wdio-visual-regression-service');
 export async function mapViewports(browser, delay, viewports = [], iterateeScreenshot, iterateeProcess) {
+
+  debug('7');
   const results = [];
 
   if (!viewports.length) {
@@ -18,6 +21,7 @@ export async function mapViewports(browser, delay, viewports = [], iterateeScree
 }
 
 export async function mapOrientations(browser, delay, orientations = [], iterateeScreenshot, iterateeProcess) {
+  debug('8');
   const results = [];
 
   if (!orientations.length) {
