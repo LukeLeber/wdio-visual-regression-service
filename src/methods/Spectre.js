@@ -37,6 +37,7 @@ log('a');
 log('b');
     const test = this.test(context);
 log('c');
+log(this.browser);
     const browser = this.browser(context);
 log('d');
     const size = this.size(context);
