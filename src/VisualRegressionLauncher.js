@@ -62,7 +62,7 @@ export default class VisualRegressionLauncher {
     browser.addCommand('checkElement', this.wrapCommand(browser, 'element', makeElementScreenshot));
     browser.addCommand('checkDocument', this.wrapCommand(browser, 'document', makeDocumentScreenshot));
     browser.addCommand('checkViewport', this.wrapCommand(browser, 'viewport', makeViewportScreenshot));
-
+    debug('Added commands to browser.');
     await this.runHook('before', this.context);
   }
 
