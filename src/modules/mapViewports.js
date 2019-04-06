@@ -12,9 +12,13 @@ export async function mapViewports(browser, delay, viewports = [], iterateeScree
     results.push(iterateeProcess(...params));
   } else {
     debug('11.5');
+    debug(viewports);
     for (let viewport of viewports) {
+      debug('11.75');
       await browser.setViewportSize(viewport);
+      debug('11.99');
       await browser.pause(delay);
+      debug('11.999999');
       const params = await iterateeScreenshot(viewport);
     debug('11');
 
