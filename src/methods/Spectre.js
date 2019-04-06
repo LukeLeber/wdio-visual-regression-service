@@ -38,6 +38,7 @@ log('b');
     const test = this.test(context);
 log('c');
 log(this.browser);
+log(this.browser.toString());
     const browser = this.browser(context);
 log('d');
     const size = this.size(context);
