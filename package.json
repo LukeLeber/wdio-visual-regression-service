@@ -34,14 +34,14 @@
     "webdriverio": "^5.0.0"
   },
   "dependencies": {
+    "@wdio/screenshot-service": "github:LukeLeber/wdio-screenshot#wdio-5.x",
     "babel-runtime": "^6.9.0",
     "debug": "^2.2.0",
     "fs-extra": "^3.0.1",
     "lodash": "^4.13.1",
     "node-resemble-js": "0.0.5",
     "nodeclient-spectre": "^1.0.3",
-    "platform": "^1.3.1",
-    "wdio-screenshot": "^0.6.0"
+    "platform": "^1.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
@@ -58,8 +58,8 @@
     "phantomjs": "^1.9.20",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.4",
-    "wdio-mocha-framework": "^0.3.1",
-    "wdio-selenium-standalone-service": "0.0.7",
-    "webdriverio": "^4.0.9"
+    "@wdio/mocha-framework": "^5.0.0",
+    "@wdio/selenium-standalone-service": "^5.0.0",
+    "webdriverio": "^5.0.0"
   }
 }
