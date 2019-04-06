@@ -238,8 +238,9 @@ export default class VisualRegressionLauncher {
 
           await runHook('beforeScreenshot', screenshotContextCleaned);
 
+          debug('Before taking screenshot');
           const base64Screenshot = await command(browser, ...args);
-
+          debug('After taking screenshot');
           await runHook('afterScreenshot', screenshotContextCleaned, base64Screenshot);
 
           // pass the following params to next iteratee function
