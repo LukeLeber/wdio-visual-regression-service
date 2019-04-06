@@ -5,6 +5,7 @@ import { makeElementScreenshot, makeDocumentScreenshot, makeViewportScreenshot }
 import getUserAgent from './scripts/getUserAgent';
 import { mapViewports, mapOrientations } from './modules/mapViewports';
 
+const debug = require('debug')('wdio-visual-regression-service');
 
 export default class VisualRegressionLauncher {
 
@@ -14,6 +15,7 @@ export default class VisualRegressionLauncher {
     this.currentFeature = null;
     this.currentScenario = null;
     this.currentStep = null;
+    debug('Ctor');
   }
 
   /**
@@ -22,6 +24,7 @@ export default class VisualRegressionLauncher {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   async onPrepare(config) {
+    debug('onPrepare');
     this.validateConfig(config);
     this.compare = config.visualRegression.compare;
     await this.runHook('onPrepare');
@@ -36,6 +39,7 @@ export default class VisualRegressionLauncher {
    * @return {Promise}
    */
   async before(capabilities, specs) {
+    debug('before');
     this.validateConfig(browser.options);
 
     this.compare = browser.options.visualRegression.compare;
