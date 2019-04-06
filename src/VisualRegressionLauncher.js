@@ -40,12 +40,12 @@ export default class VisualRegressionLauncher {
    */
   async before(capabilities, specs) {
     debug('before');
-    this.validateConfig(browser.options);
+    this.validateConfig(browser.config);
 
-    this.compare = browser.options.visualRegression.compare;
-    this.viewportChangePause = _.get(browser.options, 'visualRegression.viewportChangePause', 100);
-    this.viewports = _.get(browser.options, 'visualRegression.viewports');
-    this.orientations = _.get(browser.options, 'visualRegression.orientations');
+    this.compare = browser.config.visualRegression.compare;
+    this.viewportChangePause = _.get(browser.config, 'visualRegression.viewportChangePause', 100);
+    this.viewports = _.get(browser.config, 'visualRegression.viewports');
+    this.orientations = _.get(browser.config, 'visualRegression.orientations');
     const userAgent = (await browser.execute(getUserAgent)).value;
     const { name, version, ua } = parsePlatform(userAgent);
 
