@@ -23,10 +23,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zinserjan/wdio-visual-regression-service"
-  },
-  "bugs": {
-    "url": "https://github.com/zinserjan/wdio-visual-regression-service/issues"
+    "url": "https://github.com/LukeLeber/wdio-visual-regression-service"
   },
   "author": "Jan-André Zinser",
   "license": "MIT",
