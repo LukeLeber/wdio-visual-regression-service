@@ -5,7 +5,6 @@ import { makeElementScreenshot, makeDocumentScreenshot, makeViewportScreenshot }
 import getUserAgent from './scripts/getUserAgent';
 import { mapViewports, mapOrientations } from './modules/mapViewports';
 
-const debug = require('debug')('wdio-visual-regression-service');
 
 export default class VisualRegressionLauncher {
 
@@ -15,7 +14,6 @@ export default class VisualRegressionLauncher {
     this.currentFeature = null;
     this.currentScenario = null;
     this.currentStep = null;
-    debug('Ctor');
   }
 
   /**
@@ -24,7 +22,6 @@ export default class VisualRegressionLauncher {
    * @param {Array.<Object>} capabilities list of capabilities details
    */
   async onPrepare(config) {
-    debug('onPrepare');
     this.validateConfig(config);
     this.compare = config.visualRegression.compare;
     await this.runHook('onPrepare');
@@ -39,8 +36,7 @@ export default class VisualRegressionLauncher {
    * @return {Promise}
    */
   async before(capabilities, specs) {
-    debug('before');
-    this.validateConfig(browser.config);
+    this.validateConfig(browser.options);
 
     this.compare = browser.config.visualRegression.compare;
     this.viewportChangePause = _.get(browser.config, 'visualRegression.viewportChangePause', 100);
@@ -62,7 +58,7 @@ export default class VisualRegressionLauncher {
     browser.addCommand('checkElement', this.wrapCommand(browser, 'element', makeElementScreenshot));
     browser.addCommand('checkDocument', this.wrapCommand(browser, 'document', makeDocumentScreenshot));
     browser.addCommand('checkViewport', this.wrapCommand(browser, 'viewport', makeViewportScreenshot));
-    debug('Added commands to browser.');
+
     await this.runHook('before', this.context);
   }
 
@@ -197,10 +193,10 @@ export default class VisualRegressionLauncher {
 
     const viewportChangePauseDefault = this.viewportChangePause;
     const resolutionDefault = browser.isMobile ? this.orientations : this.viewports;
-    debug('1');
+
     return async function async(...args) {
       const url = await browser.getUrl();
-debug('2');
+
       const elementSelector = type === 'element' ? args[0] : undefined;
       const options = _.isPlainObject(args[args.length - 1]) ? args[args.length - 1] : {};
 
@@ -212,13 +208,12 @@ debug('2');
 
       const resolutions = _.get(options, resolutionKeyPlural, resolutionDefault);
       const viewportChangePause = _.get(options, 'viewportChangePause', viewportChangePauseDefault);
-debug('3');
+
       const results = await resolutionMap(
         browser,
         viewportChangePause,
         resolutions,
         async function takeScreenshot(resolution) {
-          debug('5');
           const meta = _.pickBy({
             url,
             element: elementSelector,
@@ -236,23 +231,20 @@ debug('3');
           };
 
           const screenshotContextCleaned = _.pickBy(screenshotContext, _.identity);
-          debug('Before before screenshot');
+
           await runHook('beforeScreenshot', screenshotContextCleaned);
 
-          debug('Before taking screenshot');
           const base64Screenshot = await command(browser, ...args);
-          debug('After taking screenshot');
+
           await runHook('afterScreenshot', screenshotContextCleaned, base64Screenshot);
 
           // pass the following params to next iteratee function
           return [screenshotContextCleaned, base64Screenshot];
         },
         async function processScreenshot(screenshotContextCleaned, base64Screenshot) {
-          debug('6');
           return await runHook('processScreenshot', screenshotContextCleaned, base64Screenshot);
         }
       );
-      debug('after');
       return results;
 
     }

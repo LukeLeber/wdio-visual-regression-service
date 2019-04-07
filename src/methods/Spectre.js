@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import SpectreClient from "nodeclient-spectre";
 
-const log = debug('wdio-visual-regression-service');
+const log = debug('wdio-visual-regression-service:Spectre');
 const runtimeConfigName = 'spectre-run';
 
 export default class Spectre extends BaseCompare {
@@ -30,23 +30,14 @@ export default class Spectre extends BaseCompare {
   }
 
   async processScreenshot(context, base64Screenshot) {
-    log('process screenshot');
     const runDetails = await this.getRuntimeConfig(runtimeConfigName);
-log('a');
     const testrunID = runDetails.id;
-log('b');
     const test = this.test(context);
-log('c');
-log(this.browser);
-log(this.browser.toString());
     const browser = this.browser(context);
-log('d');
     const size = this.size(context);
-log('e');
     const fuzzLevel = `${_.get(context, 'options.fuzzLevel', this.fuzzLevel)}%`;
-log('f');
     const url = _.get(context, 'meta.url', undefined);
-log('g');
+
     const uploadName = `Run-Id: #${testrunID}, Test: ${test}, Url: ${url}, Browser: ${browser}, Size: ${size}, Fuzz-Level: ${fuzzLevel}`;
     log(`${uploadName} - Starting upload`);
 
