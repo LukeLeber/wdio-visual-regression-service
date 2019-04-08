@@ -38,7 +38,7 @@
     "node-resemble-js": "0.0.5",
     "nodeclient-spectre": "^1.0.3",
     "platform": "^1.3.1",
-    "wdio-screenshot-service": "github:LukeLeber/wdio-screenshot#wdio-5.x"
+    "wdio-screenshot": "github:LukeLeber/wdio-screenshot#wdio-5.x"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
