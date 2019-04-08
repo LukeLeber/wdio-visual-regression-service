@@ -36,7 +36,7 @@ export default class VisualRegressionLauncher {
    * @return {Promise}
    */
   async before(capabilities, specs) {
-    this.validateConfig(browser.options);
+    this.validateConfig(browser.config);
 
     this.compare = browser.config.visualRegression.compare;
     this.viewportChangePause = _.get(browser.config, 'visualRegression.viewportChangePause', 100);
